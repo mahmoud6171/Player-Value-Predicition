@@ -1,3 +1,4 @@
+from tkinter import font
 from turtle import width
 import numpy as np
 import pandas as pd
@@ -265,5 +266,18 @@ top_feature = corr.index[abs(corr['value']) > 0.5]
 plt.subplots(figsize=(12, 8))
 top_corr = data[top_feature].corr()
 sns.heatmap(top_corr, annot=True)
+plt.show()
+
+plotting_columns=['reactions','club_rating','release_clause_euro','international_reputation(1-5)','wage','potential','overall_rating','value']
+
+data[plotting_columns]=data[plotting_columns].fillna(0)
+
+sns.pairplot(data[plotting_columns])
+plt.show()
+
+####################################################################################
+##################           regression part           ####################
+useful_columns=['release_clause_euro','international_reputation(1-5)','potential','overall_rating']
+subdata=data[useful_columns]
 
 
